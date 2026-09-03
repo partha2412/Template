@@ -9,6 +9,9 @@ const env = {
 
     CLIENT_URL: process.env.CLIENT_URL || "http://localhost:5173",
 
+    EMAIL_USER: process.env.EMAIL_USER,
+    EMAIL_PASSWORD: process.env.EMAIL_PASSWORD,
+
     JWT_SECRET: process.env.JWT_SECRET,
     TOKEN_EXP_TIME: process.env.TOKEN_EXP_TIME,
 

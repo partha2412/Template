@@ -5,7 +5,7 @@ import morgan from "morgan";
 import securityMiddleware from "./middlewares/security.middleware.js";
 import errorHandler from "./middlewares/errorHandler.middleware.js";
 
-import authRoutes from "../src/routes/userRoutes.js";
+import authRoutes from "./routes/auth.routes.js";
 
 import logger from "./config/logger.js";
 
@@ -26,15 +26,35 @@ export default function createApp() {
                 stream: {
                     write: (message) => {
                         const status = Number(
-                            message.match(/\s(\d{3})\s/)?.[1]
+                            message.match(/\|\s(\d{3})\s\|/)?.[1]
                         );
 
+                        let coloredStatus = String(status);
+
+                        // ANSI colors
+                        if (status >= 200 && status < 300) {
+                            coloredStatus = `\x1b[32m${status}\x1b[0m`; // Green
+                        } else if (status >= 300 && status < 400) {
+                            coloredStatus = `\x1b[36m${status}\x1b[0m`; // Cyan
+                        } else if (status >= 400 && status < 500) {
+                            coloredStatus = `\x1b[33m${status}\x1b[0m`; // Yellow
+                        } else if (status >= 500) {
+                            coloredStatus = `\x1b[31m${status}\x1b[0m`; // Red
+                        }
+
+                        const coloredMessage = message
+                            .trim()
+                            .replace(
+                                `| ${status} |`,
+                                `| ${coloredStatus} |`
+                            );
+
                         if (status >= 500) {
-                            logger.error(message.trim());
+                            logger.error(coloredMessage);
                         } else if (status >= 400) {
-                            logger.warn(message.trim());
+                            logger.warn(coloredMessage);
                         } else {
-                            logger.info(message.trim());
+                            logger.info(coloredMessage);
                         }
                     },
                 },
