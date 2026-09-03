@@ -5,11 +5,7 @@ import morgan from "morgan";
 import securityMiddleware from "./middlewares/security.middleware.js";
 import errorHandler from "./middlewares/errorHandler.middleware.js";
 
-<<<<<<< HEAD
-import authRoutes from "../src/routes/userRoutes.js";
-=======
 import authRoutes from "./routes/auth.routes.js";
->>>>>>> d4aeda4 (feat: initialize server with Express, MongoDB, and JWT authentication)
 
 import logger from "./config/logger.js";
 
@@ -30,17 +26,6 @@ export default function createApp() {
                 stream: {
                     write: (message) => {
                         const status = Number(
-<<<<<<< HEAD
-                            message.match(/\s(\d{3})\s/)?.[1]
-                        );
-
-                        if (status >= 500) {
-                            logger.error(message.trim());
-                        } else if (status >= 400) {
-                            logger.warn(message.trim());
-                        } else {
-                            logger.info(message.trim());
-=======
                             message.match(/\|\s(\d{3})\s\|/)?.[1]
                         );
 
@@ -70,7 +55,6 @@ export default function createApp() {
                             logger.warn(coloredMessage);
                         } else {
                             logger.info(coloredMessage);
->>>>>>> d4aeda4 (feat: initialize server with Express, MongoDB, and JWT authentication)
                         }
                     },
                 },
