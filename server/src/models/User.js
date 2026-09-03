@@ -44,6 +44,11 @@ const userSchema = new mongoose.Schema(
             type: Boolean,
             default: true,
         },
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 8416ae6d542b288ab2814b8baa7059306ba9d540
         resetPasswordToken: {
             type: String,
             default: null,
@@ -53,6 +58,10 @@ const userSchema = new mongoose.Schema(
             type: Date,
             default: null,
         },
+<<<<<<< HEAD
+=======
+>>>>>>> d4aeda4 (feat: initialize server with Express, MongoDB, and JWT authentication)
+>>>>>>> 8416ae6d542b288ab2814b8baa7059306ba9d540
     },
     {
         timestamps: true,
