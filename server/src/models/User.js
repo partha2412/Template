@@ -44,6 +44,18 @@ const userSchema = new mongoose.Schema(
             type: Boolean,
             default: true,
         },
+<<<<<<< HEAD
+=======
+        resetPasswordToken: {
+            type: String,
+            default: null,
+        },
+
+        resetPasswordExpires: {
+            type: Date,
+            default: null,
+        },
+>>>>>>> d4aeda4 (feat: initialize server with Express, MongoDB, and JWT authentication)
     },
     {
         timestamps: true,
